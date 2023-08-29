@@ -22,8 +22,11 @@
                                 <div class="card border-top-info p-4">                      
                                     <div class="card-body">
                                         <div class="form-group text-center mb-3">
-                                            <img src="{{ asset('vendor/dist/img/logo.png')}}" class="logo-upt img-circle mb-2">   
-                                                                                                                 
+                                            @if ($akun->foto_profil == null)
+                                            <img src="{{asset('public/img/user2-160x160.jpg')}}" class="img-circle mb-2"> 
+                                            @else
+                                            <img src="{{asset('assets/foto profil/'.$akun->foto_profil)}}" class="img-circle mb-2"> 
+                                            @endif                                                                                   
                                         </div>
                                         <div class="d-grid col-12 mx-auto">                                  
                                             <div class="card mb-4">
@@ -31,25 +34,39 @@
                                                     <p class="text-center h5 fw-bold">Biodata Diri</p>
                                                 </div>
                                                 <div class="card-body">
-                                                    <medium class="text-muted">Alamat:</medium>
-                                                    <medium class="mb-3">{{$akun->alamat}}</medium>
-                                                    <hr>
                                                     <medium class="text-muted">Tempat, Tanggal Lahir:</medium>
+                                                    @if ($akun->tempat_lahir == null)
+                                                    <medium class="mb-3"></medium>
+                                                    @else
                                                     <medium class="mb-3">{{$akun->tempat_lahir}}, {{$akun->tanggal_lahir}}</medium>
+                                                    @endif
                                                     <hr>
                                                     <medium class="text-muted">Jenis Kelamin:</medium>
                                                     <medium class="mb-3">{{$akun->jenis_kelamin}}</medium>
                                                     <hr>
+                                                    <medium class="text-muted">Alamat:</medium>
+                                                    <medium class="mb-3">{{$akun->alamat}}</medium>
+                                                    <hr>
                                                     <medium class="text-muted">Telepon:</medium>
                                                     <medium class="mb-3">{{$akun->telepon}}</medium>
                                                     <hr>
-                                                    <medium class="text-muted">No. Sim:</medium>
+                                                    <medium class="text-muted">Email:</medium>
+                                                    <medium class="mb-3">{{$akun->email}}</medium>
+                                                    <hr>
+                                                    <medium class="text-muted">No. KTP:</medium>
+                                                    <medium class="text-primary fw-bold mb-3">{{$akun->no_ktp}}</medium>
+                                                    <hr>
+                                                    <medium class="text-muted">No. SIM:</medium>
                                                     <medium class="text-primary fw-bold mb-3">{{$akun->no_sim}}</medium>
                                                     
                                                     
                                                 </div>
                                             </div>
-                                            <a href="{{route('profile.edit',Crypt::encrypt($akun->id))}}" class="mt-3 btn btn-primary"><i class="bi bi-pencil-square"></i> Ubah Profil</a>
+                                            
+                                            <div class="d-flex mx-auto justify-content-center">
+
+                                                <a href="{{route('profile.edit',Crypt::encrypt($akun->id))}}" class="mt-3 col-6 btn btn-primary"><i class="bi bi-pencil-square"></i> Ubah Profil</a>
+                                            </div>
                                             
                                         </div>
                                     </div>

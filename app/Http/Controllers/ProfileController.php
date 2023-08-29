@@ -98,11 +98,12 @@ class ProfileController extends Controller
         $user->jenis_kelamin=$request->jenis_kelamin;
         $user->telepon=$request->telepon;
         $user->alamat=$request->alamat;
+        $user->no_ktp=$request->no_ktp;
         $user->no_sim=$request->no_sim;
         $user->created_at=\Carbon\Carbon::now();
         $user->save();
 
-        return redirect()->route('profil.index')->with('sukses', 'Akun '. $user->name .' berhasil diubah');
+        return redirect()->route('profile.index')->with('sukses', 'Akun '. $user->name .' berhasil diubah');
     }
 
     /**
