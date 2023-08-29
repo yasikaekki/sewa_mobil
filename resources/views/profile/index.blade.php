@@ -26,7 +26,9 @@
                                             <img src="{{asset('public/img/user2-160x160.jpg')}}" class="img-circle mb-2"> 
                                             @else
                                             <img src="{{asset('assets/foto profil/'.$akun->foto_profil)}}" class="img-circle mb-2"> 
-                                            @endif                                                                                   
+                                            @endif 
+                                            <h4 class="fs-3">{{$akun->name}}</h4>
+                                            <p class="fs-5 text-muted mb-4">{{$akun->role->jenis_role}}</p>                                                                                     
                                         </div>
                                         <div class="d-grid col-12 mx-auto">                                  
                                             <div class="card mb-4">
@@ -38,7 +40,7 @@
                                                     @if ($akun->tempat_lahir == null)
                                                     <medium class="mb-3"></medium>
                                                     @else
-                                                    <medium class="mb-3">{{$akun->tempat_lahir}}, {{$akun->tanggal_lahir}}</medium>
+                                                    <medium class="mb-3">{{$akun->tempat_lahir}}, {{strftime("%d %B %Y", strtotime($akun->tanggal_lahir))}}</medium>
                                                     @endif
                                                     <hr>
                                                     <medium class="text-muted">Jenis Kelamin:</medium>
@@ -53,6 +55,9 @@
                                                     <medium class="text-muted">Email:</medium>
                                                     <medium class="mb-3">{{$akun->email}}</medium>
                                                     <hr>
+                                                    <medium class="text-muted">No. NPWP:</medium>
+                                                    <medium class="text-primary fw-bold mb-3">{{$akun->no_npwp}}</medium>
+                                                    <hr>
                                                     <medium class="text-muted">No. KTP:</medium>
                                                     <medium class="text-primary fw-bold mb-3">{{$akun->no_ktp}}</medium>
                                                     <hr>
@@ -62,10 +67,8 @@
                                                     
                                                 </div>
                                             </div>
-                                            
-                                            <div class="d-flex mx-auto justify-content-center">
-
-                                                <a href="{{route('profile.edit',Crypt::encrypt($akun->id))}}" class="mt-3 col-6 btn btn-primary"><i class="bi bi-pencil-square"></i> Ubah Profil</a>
+                                            <div class="d-flex justify-content-center">
+                                                <a href="{{route('profile.edit',Crypt::encrypt($akun->id))}}" class="btn btn-primary col-6"><i class="bi bi-pencil-square"></i> Ubah Profil</a>
                                             </div>
                                             
                                         </div>

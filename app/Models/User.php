@@ -18,7 +18,12 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'role_id',
         'name',
+        'alamat',
+        'telepon',
+        'no_sim',
+        "no_npwp",
         'email',
         'password',
     ];
@@ -41,4 +46,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function role(){
+        return $this->belongsTo('App\Models\Role');
+    }
+
+    public function postcar(){
+        return $this->belongsTo('App\Models\postCar');
+    }
 }

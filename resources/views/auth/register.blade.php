@@ -40,6 +40,45 @@
           @enderror
         </div>
         <div class="input-group mb-3">
+          <input id="alamat" type="text" placeholder="Alamat" class="form-control @error('alamat') is-invalid @enderror" name="alamat" value="{{ old('alamat') }}" required autocomplete="alamat" autofocus>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+          @error('alamat')
+          <span class="invalid-feedback" role="alert">
+              <strong>{{ $message }}</strong>
+          </span>
+          @enderror
+        </div>
+        <div class="input-group mb-3">
+          <input id="telepon" type="text" placeholder="Telepon" class="form-control @error('telepon') is-invalid @enderror" name="telepon" value="{{ old('telepon') }}" required autocomplete="telepon" autofocus>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+          @error('telepon')
+          <span class="invalid-feedback" role="alert">
+              <strong>{{ $message }}</strong>
+          </span>
+          @enderror
+        </div>
+        <div class="input-group mb-3">
+          <input id="no_sim" type="number" placeholder="No. SIM" class="form-control @error('no_sim') is-invalid @enderror" name="no_sim" value="{{ old('no_sim') }}" required autocomplete="no_sim" autofocus>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+          @error('no_sim')
+          <span class="invalid-feedback" role="alert">
+              <strong>{{ $message }}</strong>
+          </span>
+          @enderror
+        </div>
+        <div class="input-group mb-3">
           <input id="email" type="email" placeholder="Email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
           <div class="input-group-append">
             <div class="input-group-text">

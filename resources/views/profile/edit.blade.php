@@ -136,6 +136,21 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        @if ($akun->jenis_kelamin == null)
+                                                        <div class="form-group mb-3">
+                                                            <label for="exampleFormControlSelect1">Jenis Kelamin</label>
+                                                            <select name="jenis_kelamin" id="select" class="form-select mb-3 form-control @error('jenis_kelamin') is-invalid @enderror" required autocomplete="jenis_kelamin">
+                                                                <option value="null" selected hidden disabled>Pilih</option>
+                                                                <option value="Laki-Laki">Laki-laki</option>
+                                                                <option value="Perempuan">Perempuan</option>
+                                                            </select>
+                                                            @error('jenis_kelamin')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                        @else
                                                         <div class="form-group mb-3">
                                                             <label for="exampleFormControlSelect1">Jenis Kelamin</label>
                                                             <select name="jenis_kelamin" id="select" class="form-select mb-3 form-control @error('jenis_kelamin') is-invalid @enderror" required autocomplete="jenis_kelamin">
@@ -153,24 +168,21 @@
                                                                 </span>
                                                             @enderror
                                                         </div>
-                                                        <div class="form-group mb-3">
-                                                            <label for="exampleFormControlSelect1">Jenis Kelamin</label>
-                                                            <select name="jenis_kelamin" id="select" class="form-select mb-3 form-control @error('jenis_kelamin') is-invalid @enderror" required autocomplete="jenis_kelamin">
-                                                                <option value="null" selected hidden disabled>Pilih</option>
-                                                                <option value="Laki-Laki">Laki-laki</option>
-                                                                <option value="Perempuan">Perempuan</option>
-                                                            </select>
-                                                            @error('jenis_kelamin')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
-                                                        </div>
+                                                        @endif
     
                                                         <div class="form-group">
                                                             <label>Telepon</label>
                                                             <input type="text" value="{{$akun->telepon}}" class="mb-3 form-control @error('telepon') is-invalid @enderror" placeholder="Telepon" name="telepon">
                                                             @error('telepon')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>No. NPWP</label>
+                                                            <input type="text" value="{{$akun->no_npwp}}" class="mb-3 form-control @error('no_npwp') is-invalid @enderror" placeholder="No. NPWP" name="no_npwp">
+                                                            @error('no_npwp')
                                                                 <span class="invalid-feedback" role="alert">
                                                                     <strong>{{ $message }}</strong>
                                                                 </span>
