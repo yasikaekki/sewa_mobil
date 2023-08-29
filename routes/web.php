@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,4 +16,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Auth::routes();
+ 
+Route::group(['prefix' => 'home', 'middleware' => 'auth'], function(){
+    Route::get('/',[App\Http\Controllers\HomeController::class,'index'])->name('home');
+    Route::resource('/profile', '\App\Http\Controllers\ProfileController');
+
 });
