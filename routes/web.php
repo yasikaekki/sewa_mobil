@@ -19,9 +19,10 @@ Route::get('/', function () {
 });
 
 Auth::routes();
- 
+
 Route::group(['prefix' => 'home', 'middleware' => 'auth'], function(){
     Route::get('/',[App\Http\Controllers\HomeController::class,'index'])->name('home');
+    Route::resource('/sewa_mobil', '\App\Http\Controllers\CarController');
     Route::resource('/profile', '\App\Http\Controllers\ProfileController');
 
 });
