@@ -4,7 +4,6 @@
     <!-- Content Header (Page header) -->
     @include('layouts.header')
     <!-- /.content-header -->
-
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">

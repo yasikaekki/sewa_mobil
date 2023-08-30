@@ -71,6 +71,18 @@ class CarController extends Controller
 
         return redirect()->route('sewa_mobil.index')->with('sukses', 'Jenis Kendaraan '. $newCar->nama_kendaraan .' berhasil disimpan');
     }
+    
+    public function submit(Request $request, $id)
+    {
+        //
+        $postCar = PostCar::find($id);
+        $postCar->status= "Terpinjam";
+        $postCar->masa_akhir= $request->masa_akhir;
+        $postCar->created_at = \Carbon\Carbon::now();
+        $postCar->save();
+
+        return redirect()->route('sewa_mobil.index')->with('sukses', 'Jenis Kendaraan '. $newCar->nama_kendaraan .' berhasil dipinjam');
+    }
 
     /**
      * Display the specified resource.

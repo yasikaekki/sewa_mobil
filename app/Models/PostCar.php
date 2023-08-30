@@ -15,6 +15,9 @@ class PostCar extends Model
         'harga',
         'no_kendaraan',
         'no_stnk',
+        'status',
+        'masa_sewa',
+        'masa_akhir',
     ];
 
     public function user(){

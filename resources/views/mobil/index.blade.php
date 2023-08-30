@@ -36,7 +36,7 @@
                   <br>
                   STNK: {{$posts->no_stnk}}
                 </p>
-                @if ($posts->user->role_id == 2)
+                @if ($akun->role_id == 2)
                 <div class="d-flex mx-auto justify-content-center gap-2">
                   <a href="{{route('sewa_mobil.edit',Crypt::encrypt($posts->id))}}" class="btn btn-primary col-6">Ubah</a>
                   <button class="btn btn-danger col-6" type="submit" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Hapus</button>
@@ -65,7 +65,13 @@
                 </div>
                 @else
                 <div class="d-flex mx-auto justify-content-center">
-                  <a href="./portfolio/p1.html" class="btn btn-primary col-6">Sewa</a>
+                  <form action="{{route('sewa_mobil.submit',$posts->id)}}" method="post">
+                    @csrf
+                    @method('PATCH')
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
+                      <button class="btn btn-success"><i class="bi bi-sliders"></i> Sewa</button>
+                    </div>
+                  </form>
                 </div>
                 @endif
               </div>

@@ -24,8 +24,9 @@
     <div class="card-body register-card-body">
       <p class="login-box-msg">Register a new membership</p>
 
-      <form action="{{route('daftar.store')}}" method="post">
+      <form action="{{route('register')}}" method="post">
         @csrf
+        <input type="hidden" name="role_id" value="{{ $roleid }}">
         <div class="input-group mb-3">
           <input id="name" type="text" placeholder="Name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
           <div class="input-group-append">

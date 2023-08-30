@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
-use Illuminate\Support\Facades\Hash;
-use App\Http\Controllers\Controller;
+namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\PostCar;
+use Auth;
 
-class DaftarController extends Controller
+class DataSewaMobilController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +17,12 @@ class DaftarController extends Controller
     public function index()
     {
         //
-        $roleid = 2;
+        $judul = "Data Sewa Mobil";
+        $uid = Auth::user()->id;
+        $akun = User::find($uid);
+        $post = PostCar::all();
 
-        return view('auth.daftar', compact('roleid'));
+        return view('dataSewaMobil.index', compact('judul', 'akun', 'post'));
     }
 
     /**
@@ -39,7 +43,7 @@ class DaftarController extends Controller
      */
     public function store(Request $request)
     {
-
+        //
     }
 
     /**
