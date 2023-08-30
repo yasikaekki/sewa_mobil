@@ -11,11 +11,6 @@
                 @include('layouts.sidebar')
                 <section class="content">
                     <div class="container p-5">
-                        @if(session()->get('sukses'))
-                            <div class="alert alert-success">
-                                {{session()->get('sukses')}}
-                            </div>
-                        @endif
         
                         <div class="row d-flex justify-content-center">
                             <div class="col-lg-12">

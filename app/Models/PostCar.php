@@ -10,14 +10,15 @@ class PostCar extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'role_id',
-        'foto_profil',
+        'harga',
         'no_kendaraan',
         'no_stnk',
     ];
 
     public function user(){
-        return $this->hasMany('App\Models\User');
+        return $this->belongsTo('App\Models\User');
     }
 
     public function role(){

@@ -48,10 +48,10 @@ class User extends Authenticatable
     ];
 
     public function role(){
-        return $this->belongsTo('App\Models\Role');
+        return $this->hasMany('App\Models\Role');
     }
 
     public function postcar(){
-        return $this->belongsTo('App\Models\postCar');
+        return $this->hashMany('App\Models\postCar');
     }
 }
