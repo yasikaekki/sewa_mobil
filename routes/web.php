@@ -18,6 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/daftar',[App\Http\Controllers\Auth\DaftarController::class,'create'])->name('auth.daftar');
+Route::post('/daftar/store',[App\Http\Controllers\Auth\DaftarController::class,'store'])->name('daftar.store');
+
 Auth::routes();
 
 Route::group(['prefix' => 'home', 'middleware' => 'auth'], function(){

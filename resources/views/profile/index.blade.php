@@ -28,7 +28,7 @@
                                             <img src="{{asset('assets/foto profil/'.$akun->foto_profil)}}" class="img-circle mb-2"> 
                                             @endif 
                                             <h4 class="fs-3">{{$akun->name}}</h4>
-                                            {{-- <p class="fs-5 text-muted mb-4">{{$akun->role->jenis_role}}</p>                                                                                      --}}
+                                            <p class="fs-5 text-muted mb-4">{{$akun->role->jenis_role}}</p>                                                                                     
                                         </div>
                                         <div class="d-grid col-12 mx-auto">                                  
                                             <div class="card mb-4">

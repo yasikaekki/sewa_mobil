@@ -15,15 +15,17 @@
         @endif
         <!-- Small boxes (Stat box) -->
         <div class="row">
+          @if ($akun->role_id == 2)
           <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
             <a href="{{route('sewa_mobil.create')}}" class="btn btn-success"><i class="bi bi-sliders"></i> Tambah</a>
           </div>
+          @endif
           @foreach ($post as $posts)
           <div class="col-lg-3 col-6">
             <div class="card">
               <div class="card-body">
                
-                <img src="{{asset('assets/foto_profil/'.$posts->foto_profil)}}" width="220" height="220">
+                <img src="{{asset('assets/foto produk/'.$posts->foto_profil)}}" width="220" height="220">
                 <h4 class="text-center mt-3">{{$posts->nama_kendaraan}}</h4>
                 <p class="card-text">
                   Penyewa : {{$posts->user->name}}

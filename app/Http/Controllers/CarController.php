@@ -58,7 +58,7 @@ class CarController extends Controller
         if ($request->hasFile('foto_profil')) {
             $file_foto = $request->file('foto_profil');
             $nama_foto = time() . "." . $file_foto->getClientOriginalExtension();
-            $upload_foto = 'assets/foto profil/';
+            $upload_foto = 'assets/foto produk/';
             $file_foto->move($upload_foto, $nama_foto);
             $newCar->foto_profil = $nama_foto;
         }
@@ -69,7 +69,7 @@ class CarController extends Controller
         $newCar->created_at = \Carbon\Carbon::now();
         $newCar->save();
 
-        return redirect()->route('sewa_mobil.index')->with('sukses', 'Akun '. $user->name .' berhasil diubah');
+        return redirect()->route('sewa_mobil.index')->with('sukses', 'Jenis Kendaraan '. $newCar->nama_kendaraan .' berhasil disimpan');
     }
 
     /**
@@ -117,7 +117,7 @@ class CarController extends Controller
         if ($request->hasFile('foto_profil')) {
             $file_foto = $request->file('foto_profil');
             $nama_foto = time() . "." . $file_foto->getClientOriginalExtension();
-            $upload_foto = 'assets/foto profil/';
+            $upload_foto = 'assets/foto produk/';
             $file_foto->move($upload_foto, $nama_foto);
             $post->foto_profil = $nama_foto;
         }
@@ -128,7 +128,7 @@ class CarController extends Controller
         $post->created_at=\Carbon\Carbon::now();
         $post->save();
 
-        return redirect()->route('mobil.index')->with('sukses', 'Jenis Kendaraan '. $post->nama_kendaraan .' berhasil diubah');
+        return redirect()->route('sewa_mobil.index')->with('sukses', 'Jenis Kendaraan '. $post->nama_kendaraan .' berhasil diubah');
     }
 
     /**
