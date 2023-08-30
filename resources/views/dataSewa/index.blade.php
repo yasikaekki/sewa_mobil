@@ -18,7 +18,7 @@
                             <tr class="table-secondary text-center">
                                 <th>No.</th>
                                 <th>Nama Penyewa</th>
-                                <th>Jenis Kendaraan</th>
+                                <th>Nama Kendaraan</th>
                                 <th>Nomor Kendaraan</th>
                                 <th>STNK</th>
                                 <th>Tanggal Sewa</th>
@@ -27,15 +27,17 @@
                             </thead>
                             <tbody>
                             @foreach($post as $posts)
+                            @if ($posts->status !=null || $posts->masa_akhir != null)
                             <tr class="text-center hasil-filter">
                                 <td>{{$no++}}.</td>
-                                <td>{{$posts->user->nama_penyewa}}</td>
-                                <td>{{$posts->jenis_kendaraan}}</td>  
+                                <td>{{$posts->user->name}}</td>
+                                <td>{{$posts->nama_kendaraan}}</td>  
                                 <td>{{$posts->no_kendaraan}}</td>     
                                 <td>{{$posts->no_stnk}}</td>     
-                                <td>{{$posts->tgl_sewa}}</td>     
-                                <td>{{$posts->tgl_akhir}}</td>     
+                                <td>{{strftime("%d %B %Y", strtotime($posts->created_at))}}</td>     
+                                <td>{{strftime("%d %B %Y", strtotime($posts->masa_akhir))}}</td>     
                             </tr>
+                            @endif
                             @endforeach
                             </tbody>
                         </table>

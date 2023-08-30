@@ -35,7 +35,6 @@
                             }
                         };
                     </script>
-
                     <div class="form-group mb-3">
                         <div class="row">
                             <label>Nama Kendaraan</label>
@@ -74,17 +73,6 @@
                             <label>Nomor STNK</label>
                             <input type="number" value="{{old('no_stnk')}}" class="form-control @error('no_stnk') is-invalid @enderror" name="no_stnk" placeholder="Nomor STNK">
                             @error('no_stnk')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="form-group mb-3">
-                        <div class="row">
-                            <label>Tanggal Akhir Sewa</label>
-                            <input type="date" value="{{old('masa_akhir')}}" class="form-control @error('masa_akhir') is-invalid @enderror" name="masa_akhir" placeholder="Tanggal Akhir Sewa">
-                            @error('masa_akhir')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

@@ -15,15 +15,15 @@ class CreatePostCarsTable extends Migration
     {
         Schema::create('post_cars', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('role_id');
             $table->foreignId('user_id');
             $table->string("foto_profil");
             $table->string("nama_kendaraan");
+            $table->string("status")->nullable();
+            $table->string("masa_awal")->nullable();
+            $table->string("masa_akhir")->nullable();
             $table->integer("harga");
             $table->integer("no_kendaraan");
-            $table->integer("status");
-            $table->integer("masa_sewa");
-            $table->integer("masa_akhir");
+            $table->integer("no_stnk");
             $table->timestamps();
         });
     }

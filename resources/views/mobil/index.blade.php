@@ -20,7 +20,9 @@
             <a href="{{route('sewa_mobil.create')}}" class="btn btn-success"><i class="bi bi-sliders"></i> Tambah</a>
           </div>
           @endif
+          
           @foreach ($post as $posts)
+          {{$posts->user->role}}
           <div class="col-lg-3 col-6">
             <div class="card">
               <div class="card-body">
@@ -30,11 +32,18 @@
                 <p class="card-text">
                   Penyewa : {{$posts->user->name}}
                   <br>
-                  Harga Sewa: {{$posts->harga}}
+                  Harga Sewa: {{$posts->harga}}/hari
                   <br>
                   No. Kendaraan: {{$posts->no_kendaraan}}
                   <br>
                   STNK: {{$posts->no_stnk}}
+                  <br>
+                  @if ($posts->status == null)
+                  Status: Tersedia    
+                  @else
+                  Status: {{$posts->status}}
+                  @endif
+                  <br>
                 </p>
                 @if ($akun->role_id == 2)
                 <div class="d-flex mx-auto justify-content-center gap-2">
@@ -65,13 +74,9 @@
                 </div>
                 @else
                 <div class="d-flex mx-auto justify-content-center">
-                  <form action="{{route('sewa_mobil.submit',$posts->id)}}" method="post">
-                    @csrf
-                    @method('PATCH')
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
-                      <button class="btn btn-success"><i class="bi bi-sliders"></i> Sewa</button>
-                    </div>
-                  </form>
+                  @if ($posts->status == null || $posts->masa_akhir == null)
+                  <a href="{{route('sewa_mobil.show',$posts->id)}}" class="btn btn-primary col-6"><i class="bi bi-sliders"></i> Sewa</a>
+                  @endif
                 </div>
                 @endif
               </div>

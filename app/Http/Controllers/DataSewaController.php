@@ -7,7 +7,7 @@ use App\Models\User;
 use App\Models\PostCar;
 use Auth;
 
-class DataSewaMobilController extends Controller
+class DataSewaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,12 +17,13 @@ class DataSewaMobilController extends Controller
     public function index()
     {
         //
-        $judul = "Data Sewa Mobil";
+        $judul = "Data Sewa";
         $uid = Auth::user()->id;
+        $no = 1;
         $akun = User::find($uid);
         $post = PostCar::all();
 
-        return view('dataSewaMobil.index', compact('judul', 'akun', 'post'));
+        return view('dataSewa.index', compact('judul', 'akun', 'post', 'no'));
     }
 
     /**

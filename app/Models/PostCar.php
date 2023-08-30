@@ -11,20 +11,16 @@ class PostCar extends Model
 
     protected $fillable = [
         'user_id',
-        'role_id',
         'harga',
+        'nama_kendaraan',
         'no_kendaraan',
         'no_stnk',
         'status',
-        'masa_sewa',
+        'masa_awal',
         'masa_akhir',
     ];
 
     public function user(){
         return $this->belongsTo('App\Models\User');
-    }
-
-    public function role(){
-        return $this->belongsTo('App\Models\Role');
     }
 }

@@ -25,8 +25,8 @@ Auth::routes();
 Route::group(['prefix' => 'home', 'middleware' => 'auth'], function(){
     Route::get('/',[App\Http\Controllers\HomeController::class,'index'])->name('home');
     Route::resource('/sewa_mobil', '\App\Http\Controllers\CarController');
-    Route::put('/sewa_mobil/{sewa_mobil}', [App\Http\Controllers\CarController::class,'submit'])->name('sewa_mobil.submit');
-    Route::get('/data-sewa-mobil',[App\Http\Controllers\DataSewaMobilController::class,'index'])->name('data_sewa_mobil.index');
+    Route::match(['put','patch'],'/sewa_mobil/{sewa_mobil}', [App\Http\Controllers\CarController::class,'submit'])->name('sewa_mobil.submit');
+    Route::get('/data_sewa',[App\Http\Controllers\DataSewaController::class,'index'])->name('data_sewa.index');
     Route::resource('/profile', '\App\Http\Controllers\ProfileController');
 
 });

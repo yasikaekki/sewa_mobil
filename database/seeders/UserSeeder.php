@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
         $user = new User; 
         $user->role_id = 2;           
         $user->name = "Admin";
-        $user->email = "admin@gmail.com";
+        $user->email = "admin@mail.com";
         $user->telepon = "+621243";
         $user->alamat = "adaffa";
         $user->no_sim = 1111;

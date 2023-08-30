@@ -81,17 +81,6 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="form-group mb-3">
-                        <div class="row">
-                            <label>Tanggal Akhir Sewa</label>
-                            <input type="date" value="{{$post->masa_akhir}}" class="form-control @error('masa_akhir') is-invalid @enderror" name="masa_akhir" placeholder="Tanggal Akhir Sewa">
-                            @error('masa_akhir')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
                     
                     <button type="submit" class="btn btn-primary form-control mt-2"><i class="fas fa-save"></i> Buat Akun</button>
                 </form>

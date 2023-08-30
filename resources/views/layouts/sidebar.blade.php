@@ -52,6 +52,15 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{route('data_sewa.index')}}" class="nav-link">
+              <i class="nav-icon fa-solid fa-clipboard-list"></i>
+              <p>
+                Data Peminjaman
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
           <div class="user-panel pb-3 mb-3 d-flex"></div>       
           <li class="nav-item">
             <a class="nav-link" href="{{ route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa-solid fa-power-off nav-icon"></i>
