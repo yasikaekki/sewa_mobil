@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\PostCar;
-use App\Models\Sewa;
+use App\Models\Terpinjam;
 use App\Models\User;
 use Auth;
 
@@ -23,8 +23,9 @@ class CarController extends Controller
         $uid = Auth::user()->id;
         $akun = User::find($uid);
         $post = PostCar::all();
-
-        return view('mobil.index', compact('judul','akun','post'));
+        $jumlah = count($post);
+        $data = PostCar::find($jumlah);
+        return view('mobil.index', compact('judul','akun','post','data'));
     }
 
     /**
@@ -53,9 +54,8 @@ class CarController extends Controller
         //
         $uid = Auth::user()->id;
         $user = User::find($uid);
-        $newCar = New PostCar;
+        $newCar = new PostCar;
         $newCar->user_id= $uid;
-        $newCar->role_id= $user->role_id;
         if ($request->hasFile('foto_profil')) {
             $file_foto = $request->file('foto_profil');
             $nama_foto = time() . "." . $file_foto->getClientOriginalExtension();
@@ -82,12 +82,6 @@ class CarController extends Controller
     public function show($id)
     {
         //
-        $judul = "Sewa Kendaraan";
-        $uid = Auth::user()->id;
-        $akun = User::find($uid);
-        $post = PostCar::find($id);
-
-        return view('mobil.show',compact('judul','akun','post'));
     }
 
     /**
@@ -108,14 +102,19 @@ class CarController extends Controller
         return view('mobil.edit', compact('judul', 'post', 'akun'));
     }
 
-    public function submit(Request $request, $id)
+    public function submit(Request $request,$id)
     {
+        //
         $pinjam = PostCar::find($id);
+        
         $pinjam->status= "Terpinjam";
-        $pinjam->masa_awal = \Carbon\Carbon::now();;
-        $pinjam->masa_akhir= $request->masa_akhir;
-        $pinjam->created_at = \Carbon\Carbon::now();
+        $pinjam->masa_akhir = $request->masa_akhir;
         $pinjam->save();
+
+        $terpinjam = new Terpinjam;
+        $terpinjam->user_id = Auth::user()->id;
+        $terpinjam->post_car_id = $pinjam->id;
+        $terpinjam->save();
 
         return redirect()->route('sewa_mobil.index')->with('sukses', 'Jenis Kendaraan '. $pinjam->nama_kendaraan .' berhasil dipinjam');
     }

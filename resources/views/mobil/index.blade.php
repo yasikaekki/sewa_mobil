@@ -22,7 +22,6 @@
           @endif
           
           @foreach ($post as $posts)
-          {{$posts->user->role}}
           <div class="col-lg-3 col-6">
             <div class="card">
               <div class="card-body">
@@ -38,11 +37,6 @@
                   <br>
                   STNK: {{$posts->no_stnk}}
                   <br>
-                  @if ($posts->status == null)
-                  Status: Tersedia    
-                  @else
-                  Status: {{$posts->status}}
-                  @endif
                   <br>
                 </p>
                 @if ($akun->role_id == 2)
@@ -74,9 +68,42 @@
                 </div>
                 @else
                 <div class="d-flex mx-auto justify-content-center">
-                  @if ($posts->status == null || $posts->masa_akhir == null)
-                  <a href="{{route('sewa_mobil.show',$posts->id)}}" class="btn btn-primary col-6"><i class="bi bi-sliders"></i> Sewa</a>
-                  @endif
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-primary col-6" data-bs-toggle="modal" data-bs-target="#exampleModal{{$posts->id}}">
+                    Sewa
+                  </button>
+                  <!-- Modal -->
+                  <div class="modal fade" id="exampleModal{{($posts->id)}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <form action="{{route('sewa.submit',$posts->id)}}" method="post">
+                          @csrf
+                          @method('PATCH')
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            <div class="form-group mb-3">
+                              <div class="row">
+                                  <label>Tanggal Akhir Peminjaman</label>
+                                  <input type="date" value="{{$posts->masa_akhir}}" class="form-control @error('masa_akhir') is-invalid @enderror" name="masa_akhir" placeholder="Tanggal Akhir Peminjaman">
+                                  @error('masa_akhir')
+                                      <span class="invalid-feedback" role="alert">
+                                          <strong>{{ $message }}</strong>
+                                      </span>
+                                  @enderror
+                              </div>
+                          </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 @endif
               </div>

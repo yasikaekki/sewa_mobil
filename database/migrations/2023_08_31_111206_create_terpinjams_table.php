@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePostCarsTable extends Migration
+class CreateTerpinjamsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,10 @@ class CreatePostCarsTable extends Migration
      */
     public function up()
     {
-        Schema::create('post_cars', function (Blueprint $table) {
+        Schema::create('terpinjams', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->string("foto_profil");
-            $table->string("nama_kendaraan");
-            $table->integer("harga");
-            $table->integer("no_kendaraan");
-            $table->integer("no_stnk");
-            $table->string("status")->nullable();
-            $table->string("masa_akhir")->nullable();
+            $table->foreignId('post_car_id');
             $table->timestamps();
         });
     }
@@ -34,6 +28,6 @@ class CreatePostCarsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('post_cars');
+        Schema::dropIfExists('terpinjams');
     }
 }

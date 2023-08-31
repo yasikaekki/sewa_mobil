@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\PostCar;
-use App\Models\User;
-use Auth;
 
-class DataSewaController extends Controller
+class KeluhanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,13 +15,6 @@ class DataSewaController extends Controller
     public function index()
     {
         //
-        $judul = "Data Sewa";
-        $uid = Auth::user()->id;
-        $no = 1;
-        $akun = User::find($uid);
-        $post = PostCar::all();
-
-        return view('dataSewa.index', compact('judul', 'akun', 'post', 'no'));
     }
 
     /**

@@ -35,6 +35,7 @@
               </p>
             </a>
           </li>
+          @if ($akun->role->jenis_role == "User" || $akun->role->jenis_role == "Seller")
           <li class="nav-item">
             <a href="{{route('sewa_mobil.index')}}" class="nav-link">
               <i class="nav-icon fa-solid fa-car"></i>
@@ -57,6 +58,34 @@
               <i class="nav-icon fa-solid fa-clipboard-list"></i>
               <p>
                 Data Peminjaman
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>    
+          @endif
+          <li class="nav-item">
+            <a href="{{route('anggota.index')}}" class="nav-link">
+              <i class="nav-icon fa-solid fa-clipboard-list"></i>
+              <p>
+                Data Anggota
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('anggota.index')}}" class="nav-link">
+              <i class="nav-icon fa-solid fa-clipboard-list"></i>
+              <p>
+                Data Postingan
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('anggota.index')}}" class="nav-link">
+              <i class="nav-icon fa-solid fa-clipboard-list"></i>
+              <p>
+                Data Keluhan
                 <span class="right badge badge-danger">New</span>
               </p>
             </a>

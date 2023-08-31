@@ -52,6 +52,10 @@ class User extends Authenticatable
     }
 
     public function postcar(){
-        return $this->hashMany('App\Models\postCar');
+        return $this->hasMany('App\Models\postCar');
+    }
+
+    public function terpinjam(){
+        return $this->hasMany('App\Models\Terpinjam');
     }
 }

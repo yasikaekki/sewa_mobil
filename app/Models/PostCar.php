@@ -11,6 +11,7 @@ class PostCar extends Model
 
     protected $fillable = [
         'user_id',
+        'post_id',
         'harga',
         'nama_kendaraan',
         'no_kendaraan',
@@ -22,5 +23,9 @@ class PostCar extends Model
 
     public function user(){
         return $this->belongsTo('App\Models\User');
+    }
+
+    public function terpinjam(){
+        return $this->hasMany('App\Models\Terpinjam');
     }
 }

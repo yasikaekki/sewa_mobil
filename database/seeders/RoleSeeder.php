@@ -22,6 +22,11 @@ class RoleSeeder extends Seeder
         $role->updated_at = \Carbon\Carbon::now();
         $role->save();
         $role = new Role;            
+        $role->jenis_role = "Seller";
+        $role->created_at = \Carbon\Carbon::now();
+        $role->updated_at = \Carbon\Carbon::now();
+        $role->save();
+        $role = new Role;            
         $role->jenis_role = "Admin";
         $role->created_at = \Carbon\Carbon::now();
         $role->updated_at = \Carbon\Carbon::now();
