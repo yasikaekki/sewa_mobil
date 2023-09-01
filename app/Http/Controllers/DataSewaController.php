@@ -45,6 +45,14 @@ class DataSewaController extends Controller
     public function store(Request $request)
     {
         //
+        $lapor = new Keluhan;
+        $lapor->user_id = $request->user_id;
+        $lapor->post_car_id = $request->post_car_id;
+        $lapor->jenis_keluhan = $request->jenis_keluhan;
+        $lapor->save();
+
+        return redirect()->route('data_sewa.index')->with('sukses', 'berhasil dilaporkan');
+
     }
 
     /**

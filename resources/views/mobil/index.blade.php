@@ -85,16 +85,14 @@
                           </div>
                           <div class="modal-body">
                             <div class="form-group mb-3">
-                              <div class="row">
-                                  <label>Tanggal Akhir Peminjaman</label>
-                                  <input type="date" value="{{$posts->masa_akhir}}" class="form-control @error('masa_akhir') is-invalid @enderror" name="masa_akhir" placeholder="Tanggal Akhir Peminjaman">
-                                  @error('masa_akhir')
-                                      <span class="invalid-feedback" role="alert">
-                                          <strong>{{ $message }}</strong>
-                                      </span>
-                                  @enderror
-                              </div>
-                          </div>
+                              <label>Tanggal Akhir Peminjaman</label>
+                              <input type="date" value="{{$posts->masa_akhir}}" class="form-control @error('masa_akhir') is-invalid @enderror" name="masa_akhir" placeholder="Tanggal Akhir Peminjaman">
+                              @error('masa_akhir')
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </span>
+                              @enderror
+                            </div>
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

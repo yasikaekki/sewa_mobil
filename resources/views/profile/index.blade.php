@@ -23,9 +23,9 @@
                                     <div class="card-body">
                                         <div class="form-group text-center mb-3">
                                             @if ($akun->foto_profil == null)
-                                            <img src="{{asset('public/img/user2-160x160.jpg')}}" class="img-circle mb-2"> 
+                                            <img src="{{asset('public/img/user2-160x160.jpg')}}" class="img-circle mb-2" width="160" height="160"> 
                                             @else
-                                            <img src="{{asset('assets/foto profil/'.$akun->foto_profil)}}" class="img-circle mb-2"> 
+                                            <img src="{{asset('assets/foto profil/'.$akun->foto_profil)}}" class="img-circle mb-2" width="160" height="160"> 
                                             @endif 
                                             <h4 class="fs-3">{{$akun->name}}</h4>
                                             <p class="fs-5 text-muted mb-4">{{$akun->role->jenis_role}}</p>                                                                                     
@@ -55,9 +55,11 @@
                                                     <medium class="text-muted">Email:</medium>
                                                     <medium class="mb-3">{{$akun->email}}</medium>
                                                     <hr>
+                                                    @if ($akun->role->jenis_role == "Seller")
                                                     <medium class="text-muted">No. NPWP:</medium>
                                                     <medium class="text-primary fw-bold mb-3">{{$akun->no_npwp}}</medium>
                                                     <hr>
+                                                    @endif
                                                     <medium class="text-muted">No. KTP:</medium>
                                                     <medium class="text-primary fw-bold mb-3">{{$akun->no_ktp}}</medium>
                                                     <hr>

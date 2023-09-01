@@ -62,7 +62,7 @@
               </p>
             </a>
           </li>    
-          @endif
+          @else
           <li class="nav-item">
             <a href="{{route('anggota.index')}}" class="nav-link">
               <i class="nav-icon fa-solid fa-clipboard-list"></i>
@@ -73,7 +73,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{route('anggota.index')}}" class="nav-link">
+            <a href="{{route('data_sewa.index')}}" class="nav-link">
               <i class="nav-icon fa-solid fa-clipboard-list"></i>
               <p>
                 Data Postingan
@@ -82,7 +82,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{route('anggota.index')}}" class="nav-link">
+            <a href="{{route('keluhan.index')}}" class="nav-link">
               <i class="nav-icon fa-solid fa-clipboard-list"></i>
               <p>
                 Data Keluhan
@@ -90,6 +90,7 @@
               </p>
             </a>
           </li>
+          @endif
           <div class="user-panel pb-3 mb-3 d-flex"></div>       
           <li class="nav-item">
             <a class="nav-link" href="{{ route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa-solid fa-power-off nav-icon"></i>

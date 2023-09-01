@@ -62,6 +62,21 @@
                         </div>
                     </div>
 
+                    <div class="form-group mb-3">
+                        <label for="exampleFormControlSelect1">Jenis Role</label>
+                        <select name="role_id" id="select" class="form-select mb-3 form-control @error('role_id') is-invalid @enderror" required autocomplete="role_id">
+                            <option value="null" selected hidden disabled>Pilih</option>
+                            <option value="3">User</option>
+                            <option value="2">Seller</option>
+                            <option value="1">Admin</option>
+                        </select>
+                        @error('role_id')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
                     <div class="form-group">
                         <label>No. NPWP</label>
                         <input type="text" value="{{$akun->no_npwp}}" class="mb-3 form-control @error('no_npwp') is-invalid @enderror" placeholder="No. NPWP" name="no_npwp">

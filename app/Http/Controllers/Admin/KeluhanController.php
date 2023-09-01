@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Http\Request;
+use App\Models\Keluhan;
+use App\Models\User;
+use Auth;
 
 class KeluhanController extends Controller
 {
@@ -15,6 +19,13 @@ class KeluhanController extends Controller
     public function index()
     {
         //
+        $judul = "Data Keluhan";
+        $uid = Auth::user()->id;
+        $no =1;
+        $akun = User::find($uid);
+        $lapor= Keluhan::all();
+
+        return view('admin.keluhan.index',compact('judul','akun','no','lapor'));
     }
 
     /**
@@ -47,6 +58,12 @@ class KeluhanController extends Controller
     public function show($id)
     {
         //
+        $judul = "Profil Terlapor";
+        $akun = User::find($id);
+        // $data = Crypt::decrypt($id);
+        $lapor = Keluhan::find($id);
+
+        return view('admin.keluhan.show',compact('judul','akun','lapor'));
     }
 
     /**

@@ -28,4 +28,7 @@ class PostCar extends Model
     public function terpinjam(){
         return $this->hasMany('App\Models\Terpinjam');
     }
+    public function keluhan(){
+        return $this->hasMany('App\Models\Keluhan');
+    }
 }

@@ -51,11 +51,14 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\Role');
     }
 
-    public function postcar(){
-        return $this->hasMany('App\Models\postCar');
+    public function post_car(){
+        return $this->hasMany('App\Models\PostCar');
     }
 
     public function terpinjam(){
         return $this->hasMany('App\Models\Terpinjam');
+    }
+    public function keluhan(){
+        return $this->hasMany('App\Models\Keluhan');
     }
 }

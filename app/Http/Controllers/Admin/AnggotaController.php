@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Hash;
 use Auth;
 
 class AnggotaController extends Controller
@@ -50,6 +51,24 @@ class AnggotaController extends Controller
     public function store(Request $request)
     {
         //
+        $user = new User;
+        
+        $user->name= $request->name;
+        $user->tempat_lahir=$request->tempat_lahir;
+        $user->tanggal_lahir= $request->tanggal_lahir;
+        $user->jenis_kelamin=$request->jenis_kelamin;
+        $user->telepon=$request->telepon;
+        $user->alamat=$request->alamat;
+        $user->no_ktp=$request->no_ktp;
+        $user->no_sim=$request->no_sim;
+        $user->role_id=$request->role_id;
+        $user->no_npwp=$request->no_npwp;
+        $user->email=$request->email;
+        $user->password = Hash::make($request->password);
+        $user->created_at=\Carbon\Carbon::now();
+        $user->save();
+
+        return redirect()->route('admin.anggota.index')->with('sukses', 'Akun '. $user->name .' berhasil dibuat');
     }
 
     /**
@@ -89,7 +108,7 @@ class AnggotaController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $user = PostCar::find($id);
+        $user = User::find($id);
         
         $user->name= $request->name;
         $user->tempat_lahir=$request->tempat_lahir;
@@ -99,11 +118,12 @@ class AnggotaController extends Controller
         $user->alamat=$request->alamat;
         $user->no_ktp=$request->no_ktp;
         $user->no_sim=$request->no_sim;
+        $user->role_id=$request->role_id;
         $user->no_npwp=$request->no_npwp;
         $user->created_at=\Carbon\Carbon::now();
         $user->save();
 
-        return redirect()->route('admin.anggota.index')->with('sukses', 'Akun '. $user->name .' berhasil dibuat');
+        return redirect()->route('admin.anggota.index')->with('sukses', 'Akun '. $user->name .' berhasil diubah');
     }
 
     /**
