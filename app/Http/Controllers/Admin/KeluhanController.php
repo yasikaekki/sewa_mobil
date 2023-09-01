@@ -24,8 +24,10 @@ class KeluhanController extends Controller
         $no =1;
         $akun = User::find($uid);
         $lapor= Keluhan::all();
+        $jumlah = count($lapor);
+        $data = Keluhan::find($jumlah);
 
-        return view('admin.keluhan.index',compact('judul','akun','no','lapor'));
+        return view('admin.keluhan.index',compact('judul','akun','no','lapor','data'));
     }
 
     /**
@@ -60,8 +62,8 @@ class KeluhanController extends Controller
         //
         $judul = "Profil Terlapor";
         $akun = User::find($id);
-        // $data = Crypt::decrypt($id);
-        $lapor = Keluhan::find($id);
+        $data = Crypt::decrypt($id);
+        $lapor = Keluhan::find($data);
 
         return view('admin.keluhan.show',compact('judul','akun','lapor'));
     }

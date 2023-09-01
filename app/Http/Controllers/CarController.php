@@ -19,13 +19,13 @@ class CarController extends Controller
     public function index()
     {
         //
-        $judul = "Sewa Mobil";
+        $judul = "Data Kendaraan";
         $uid = Auth::user()->id;
         $akun = User::find($uid);
         $post = PostCar::all();
         $jumlah = count($post);
         $data = PostCar::find($jumlah);
-        return view('mobil.index', compact('judul','akun','post','data'));
+        return view('sewaMobil.index', compact('judul','akun','post','data'));
     }
 
     /**
@@ -36,11 +36,11 @@ class CarController extends Controller
     public function create()
     {
         //
-        $judul = "Tambahkan Kendaraan";
+        $judul = "Tambah Kendaraan";
         $uid = Auth::user()->id;
         $akun = User::find($uid);
 
-        return view('mobil.create',compact('judul','akun'));
+        return view('sewaMobil.create',compact('judul','akun'));
     }
 
     /**
@@ -52,6 +52,20 @@ class CarController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+            'foto_profil' => 'required|string|max:255',
+            'nama_kendaraan' => 'required|string|max:255',
+            'no_kendaraan' => 'required|string|max:255',
+            'harga' => 'required',
+            'no_stnk' => 'required',
+        ],
+        [
+            'foto_profil.required'=>'Foto kendaraan harus harus diisi',
+            'nama_kendaraan.required'=>'Nama Kendaraan harus harus diisi',
+            'no_kendaraan.required'=>'No. Kendaraan harus diisi',
+            'harga.required'=>'Harga Sewa harus diisi',
+        ]);
+
         $uid = Auth::user()->id;
         $user = User::find($uid);
         $newCar = new PostCar;
@@ -59,7 +73,7 @@ class CarController extends Controller
         if ($request->hasFile('foto_profil')) {
             $file_foto = $request->file('foto_profil');
             $nama_foto = time() . "." . $file_foto->getClientOriginalExtension();
-            $upload_foto = 'assets/foto produk/';
+            $upload_foto = 'assets/foto mobil/';
             $file_foto->move($upload_foto, $nama_foto);
             $newCar->foto_profil = $nama_foto;
         }
@@ -93,13 +107,13 @@ class CarController extends Controller
     public function edit($id)
     {
         //
-        $judul = "Ubah Data";
+        $judul = "Ubah Data Kendaraan";
         $uid = Auth::user()->id;
         $akun = User::find($uid);
         $data = Crypt::decrypt($id);
         $post = PostCar::find($data);
 
-        return view('mobil.edit', compact('judul', 'post', 'akun'));
+        return view('sewaMobil.edit', compact('judul', 'post', 'akun'));
     }
 
     public function submit(Request $request,$id)
@@ -135,7 +149,7 @@ class CarController extends Controller
         if ($request->hasFile('foto_profil')) {
             $file_foto = $request->file('foto_profil');
             $nama_foto = time() . "." . $file_foto->getClientOriginalExtension();
-            $upload_foto = 'assets/foto produk/';
+            $upload_foto = 'assets/foto mobil/';
             $file_foto->move($upload_foto, $nama_foto);
             $post->foto_profil = $nama_foto;
         }

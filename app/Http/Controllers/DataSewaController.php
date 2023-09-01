@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PostCar;
+use App\Models\Terpinjam;
 use App\Models\User;
 use Auth;
 
@@ -14,7 +15,7 @@ class DataSewaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
         $judul = "Data Sewa";
@@ -22,8 +23,11 @@ class DataSewaController extends Controller
         $no = 1;
         $akun = User::find($uid);
         $post = PostCar::all();
+        $pinjam = Terpinjam::all();
+        $jumlah = count($post);
+        $data= Terpinjam::find($jumlah);
 
-        return view('dataSewa.index', compact('judul', 'akun', 'post', 'no'));
+        return view('dataSewa.index', compact('judul', 'akun', 'post', 'no', 'data'));
     }
 
     /**
@@ -87,6 +91,12 @@ class DataSewaController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $post = PostCar::find($id);
+        $post->status = null;
+        $post->masa_akhir = null;
+        $post->save();
+
+        return redirect()->route('data_sewa.index')->with('sukses', $post->nama_kendaraan.'berhasil dikembalikan');
     }
 
     /**

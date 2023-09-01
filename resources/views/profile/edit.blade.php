@@ -25,9 +25,9 @@
                                                     <div class="col-md-5">
 
                                                         @if ($akun->foto_profil == null)
-                                                        <img class="logo-profil img-circle" src="{{asset('public/img/user2-160x160.jpg')}}" id="logo-image" width="90" height="90">
+                                                        <img class="logo-profil img-circle" src="{{asset('public/img/user2-160x160.jpg')}}" id="logo-image" width="160" height="160">
                                                         @else   
-                                                        <img class="logo-profil img-circle" src="{{asset('assets/foto profil/'.$akun->foto_profil)}}" id="logo-image" width="90" height="90">
+                                                        <img class="logo-profil img-circle" src="{{asset('assets/foto profil/'.$akun->foto_profil)}}" id="logo-image" width="160" height="160">
                                                         @endif 
 
                                                         <div class="form-group">
@@ -50,17 +50,6 @@
                                                             };
                                                         </script>
 
-                                                        <div class="form-group mb-3">
-                                                            <div class="row">
-                                                                <label>Alamat</label>
-                                                                <input type="text" value="{{$akun->alamat}}" class="form-control @error('alamat') is-invalid @enderror" name="alamat" placeholder="Alamat">
-                                                                @error('alamat')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
                                                         <div class="form-group mb-3">
                                                             <div class="row">
                                                                 <label>Nomor SIM</label>
@@ -105,6 +94,17 @@
                                                                 <label>Email</label>
                                                                 <input type="email" value="{{$akun->email}}" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Nomor KTP">
                                                                 @error('email')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group mb-3">
+                                                            <div class="row">
+                                                                <label>Alamat</label>
+                                                                <input type="text" value="{{$akun->alamat}}" class="form-control @error('alamat') is-invalid @enderror" name="alamat" placeholder="Alamat">
+                                                                @error('alamat')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
                                                                     </span>

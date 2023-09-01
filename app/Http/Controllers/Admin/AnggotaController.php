@@ -19,7 +19,7 @@ class AnggotaController extends Controller
     public function index()
     {
         //
-        $judul = "Data Anggota";
+        $judul = "Data Akun";
         $uid = Auth::user()->id;
         $no =1;
         $akun = User::find($uid);
@@ -51,15 +51,26 @@ class AnggotaController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+            'name' => 'required|string|max:255',
+            'alamat' => 'required|string|max:255',
+            'telepon' => 'required|string|max:255',
+            'no_sim' => 'required|string|max:255',
+            'email' => 'string|email|max:255|unique:users',
+            'password' => 'string|min:8|confirmed',
+        ],
+        [
+            'name.required'=>'Nama harus harus diisi',
+            'alamat.required'=>'Alamat harus diisi',
+            'telepon.required'=>'No. Telepon harus diisi',
+            'no_sim.required'=>'No. SIM harus diisi',
+            'email.required'=>'Email harus diisi',
+        ]);
         $user = new User;
         
         $user->name= $request->name;
-        $user->tempat_lahir=$request->tempat_lahir;
-        $user->tanggal_lahir= $request->tanggal_lahir;
-        $user->jenis_kelamin=$request->jenis_kelamin;
-        $user->telepon=$request->telepon;
         $user->alamat=$request->alamat;
-        $user->no_ktp=$request->no_ktp;
+        $user->telepon=$request->telepon;
         $user->no_sim=$request->no_sim;
         $user->role_id=$request->role_id;
         $user->no_npwp=$request->no_npwp;
@@ -92,10 +103,12 @@ class AnggotaController extends Controller
     {
         //
         $judul = "Ubah Akun";
+        $uid = Auth::user()->id;
+        $akun = User::find($uid);
         $data = Crypt::decrypt($id);
-        $akun = User::find($data);
+        $user = User::find($data);
 
-        return view('admin.anggota.edit',compact('judul','akun'));
+        return view('admin.anggota.edit',compact('judul','user','akun'));
     }
 
     /**
@@ -111,11 +124,8 @@ class AnggotaController extends Controller
         $user = User::find($id);
         
         $user->name= $request->name;
-        $user->tempat_lahir=$request->tempat_lahir;
-        $user->tanggal_lahir= $request->tanggal_lahir;
-        $user->jenis_kelamin=$request->jenis_kelamin;
-        $user->telepon=$request->telepon;
         $user->alamat=$request->alamat;
+        $user->telepon=$request->telepon;
         $user->no_ktp=$request->no_ktp;
         $user->no_sim=$request->no_sim;
         $user->role_id=$request->role_id;

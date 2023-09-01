@@ -7,9 +7,21 @@
 
     <!-- Main content -->
     <section class="content">
-      <div class="container-fluid">
-        <!-- Small boxes (Stat box) -->
-        <div class="row d-flex justify-content-center">
+        <div class="container-fluid">
+            <!-- Small boxes (Stat box) -->
+            <div class="row d-flex justify-content-center">
+            @empty($data)
+            <div class="col-lg-7">
+                <div class="card p-5">
+                    <div class="card-body p-4">
+                        <div class="text-center text-warning mb-4">
+                            <i class="bi bi-emoji-frown display-1"></i>
+                        </div>
+                        <p class="fs-5 text-center">Mohon maaf<br>Sepertinya belum ada keluhan</p>
+                    </div>
+                </div>
+            </div>
+            @else   
             <div class="col-lg-12">
                 <div class="card border-top-info p-4">
                     <div class="card-body">
@@ -21,6 +33,7 @@
                                 <th>Telepon Pelapor</th>
                                 <th>Nama Terlapor</th>
                                 <th>Telepon Terlapor</th>
+                                <th>Foto Kendaraan</th>
                                 <th>Nama Kendaraan</th>
                                 <th>Nomor Kendaraan</th>
                                 <th>Alasan Laporan</th>
@@ -35,40 +48,11 @@
                                 <td>{{$lapors->post_car->user->telepon}}</td>  
                                 <td>{{$lapors->user->name}}</td>
                                 <td>{{$lapors->user->telepon}}</td>     
+                                <td><img src="{{asset('assets/foto mobil/'.$lapors->foto_profil)}}" width="50" height="50"></td>     
                                 <td>{{$lapors->post_car->nama_kendaraan}}</td>     
                                 <td>{{$lapors->post_car->no_kendaraan}}</td>
                                 <td>{{$lapors->jenis_keluhan}}</td>
-                                <td><a href="{{route('keluhan.show',$lapors->id)}}" class="btn btn-primary">Lihat</a></td>
-                                {{-- @if ($users->role->jenis_role == "Admin")
-                                <td><a href="" class="btn btn-primary col-6">Ubah</a></td>      
-                                @else
-                                <td>
-                                    <a href="{{route('anggota.edit',Crypt::encrypt($users->id))}}" class="btn btn-primary">Ubah</a>
-                                    <button class="btn btn-danger col-6" type="submit" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Hapus</button>
-                                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                          <div class="modal-content">
-                                            <div class="p-3">
-                                              <div class="d-flex justify-content-center py-4">
-                                                <i class="bi bi-exclamation-triangle text-warning display-1"></i>
-                                              </div>
-                                              <div class="d-flex justify-content-center">
-                                                <h4 class="text-dark text-center fw-bold px-5">Apakah kamu yakin ingin menghapus akun {{$users->name}} ?</h4>
-                                              </div>
-                                              <div class="d-flex justify-content-evenly p-3">
-                                                <button class="btn btn-primary py-3 px-4" data-bs-dismiss="modal" aria-label="Close">Batal</button>
-                                                <form action="{{route('anggota.destroy', $users->id)}}" method="post">
-                                                  @csrf
-                                                  @method('DELETE')
-                                                  <button type="submit" class="btn btn-danger py-3 px-4">Hapus</button>
-                                                </form>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                @endif --}}
+                                <td><a href="{{route('admin.keluhan.show',Crypt::encrypt($lapors->id))}}" class="btn btn-primary">Lihat</a></td>
                             </tr>
                             @endforeach
                             </tbody>
@@ -76,10 +60,10 @@
                     </div>
                 </div>
             </div>
-
-        </div>
-        <!-- /.row -->
-      </div><!-- /.container-fluid -->
+            @endempty
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
 </div>

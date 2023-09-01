@@ -16,7 +16,7 @@
                 <form action="{{route('sewa_mobil.update',$post->id)}}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
-                    <img class="logo-profil" src="{{asset('assets/foto produk/'.$post->foto_profil)}}" id="logo-image" width="180" height="180">
+                    <img class="logo-profil" src="{{asset('assets/foto mobil/'.$post->foto_profil)}}" id="logo-image" width="180" height="180">
                     <div class="form-group">
                         <label>Upload Foto</label>
                         <input type="file" accept="image/png, image/jpeg" name="foto_profil" class="form-control @error('foto_profil') is-invalid @enderror" onchange="previewProfil(event)">
@@ -82,7 +82,7 @@
                         </div>
                     </div>
                     
-                    <button type="submit" class="btn btn-primary form-control mt-2"><i class="fas fa-save"></i> Buat Akun</button>
+                    <button type="submit" class="btn btn-primary form-control mt-2"><i class="bi bi-pencil-square"></i> Buat Akun</button>
                 </form>
               </div>
             </div>

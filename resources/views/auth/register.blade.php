@@ -22,7 +22,7 @@
 
   <div class="card">
     <div class="card-body register-card-body">
-      <p class="login-box-msg">Register a new membership</p>
+      <p class="login-box-msg">Daftar sebagai akun baru</p>
 
       <form action="{{route('register')}}" method="post">
         @csrf
@@ -113,10 +113,10 @@
             </div>
           </div>
         </div>
-        <button type="submit" class="btn btn-primary btn-block">Register</button>
+        <button type="submit" class="btn btn-primary btn-block">Daftar</button>
       </form>
 
-      <a href="{{route('login')}}" class="text-center">I already have a membership</a>
+      <a href="{{route('login')}}" class="text-center">Saya sudah memiliki akun</a>
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->

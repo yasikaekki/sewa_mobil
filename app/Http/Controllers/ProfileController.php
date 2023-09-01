@@ -82,6 +82,21 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request, [
+            'foto_profil' => 'required|string|max:255',
+            'tempat_lahir' => 'required|string|max:255',
+            'tanggal_lahir' => 'required|string|max:255',
+            'jenis_kelamin' => 'required|string|max:255',
+            'no_ktp' => 'required',
+        ],
+        [
+            'foto_profil.required'=>'Foto profil harus harus diisi',
+            'tempat_lahir.required'=>'Tempat lahir harus diisi',
+            'tanggal_lahir.required'=>'Tanggal lahir harus diisi',
+            'jenis_kelamin.required'=>'Jenis kelamin harus diisi',
+            'no_ktp.required'=>'No. KTP harus diisi',
+        ]);
+
         $user=User::find($id);
         $user->name = $request->name;
 
