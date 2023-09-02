@@ -19,7 +19,7 @@ class CarController extends Controller
     public function index()
     {
         //
-        $judul = "Data Kendaraan";
+        $judul = "Sewa Kendaraan";
         $uid = Auth::user()->id;
         $akun = User::find($uid);
         $post = PostCar::all();
@@ -36,7 +36,7 @@ class CarController extends Controller
     public function create()
     {
         //
-        $judul = "Tambah Kendaraan";
+        $judul = "Tambah Data Kendaraan";
         $uid = Auth::user()->id;
         $akun = User::find($uid);
 

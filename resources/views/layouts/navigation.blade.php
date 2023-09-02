@@ -22,6 +22,7 @@
         <div class="navbar-search-block">
           <form class="form-inline">
             <div class="input-group input-group-sm">
+              @if ($judul == "Data Akun")
               <form action="{{route('anggota.index')}}" method="get">
                 <input class="form-control form-control-navbar" type="search" name="search" placeholder="Search" aria-label="Search">
                 <div class="input-group-append">
@@ -33,6 +34,31 @@
                   </button>
                 </div>
               </form>
+              @elseif($judul == "Data Sewa")
+              <form action="{{route('data_sewa.index')}}" method="get">
+                <input class="form-control form-control-navbar" type="search" name="search" placeholder="Search" aria-label="Search">
+                <div class="input-group-append">
+                  <button class="btn btn-navbar" type="submit">
+                    <i class="fas fa-search"></i>
+                  </button>
+                  <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </form>
+              @elseif($judul == "Data Keluhan")
+              <form action="{{route('admin.keluhan.index')}}" method="get">
+                <input class="form-control form-control-navbar" type="search" name="search" placeholder="Search" aria-label="Search">
+                <div class="input-group-append">
+                  <button class="btn btn-navbar" type="submit">
+                    <i class="fas fa-search"></i>
+                  </button>
+                  <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </form>
+              @endif
             </div>
           </form>
         </div>

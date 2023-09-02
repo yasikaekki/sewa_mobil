@@ -25,6 +25,16 @@
             <div class="col-lg-12">
                 <div class="card border-top-info p-4">
                     <div class="card-body">
+                        <form action="{{route('admin.keluhan.index')}}" method="get">
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
+                              <select class="form-select col-md-2" name="sort">
+                                  <option disabled hidden selected>Urutkan Menurut</option>
+                                  <option value="desc">Terbaru</option>
+                                  <option value="asc">Terlama</option>
+                              </select>
+                              <button class="btn btn-primary" type="submit"><i class="bi bi-sliders"></i> Urutkan</button>
+                            </div>
+                          </form>
                         <table class="table table-bordered">
                             <thead>
                             <tr class="table-secondary text-center">

@@ -40,7 +40,7 @@
           </li>
           @if ($akun->role->jenis_role == "User" || $akun->role->jenis_role == "Seller")
           <li class="nav-item">
-            @if ($judul == "Data Kendaraan" || $judul == "Tambah Kendaraan" || $judul == "Ubah Kendaraan")
+            @if ($judul == "Sewa Kendaraan" || $judul == "Tambah Kendaraan" || $judul == "Ubah Kendaraan")
             <a href="{{route('sewa_mobil.index')}}" class="nav-link active">    
             @else    
             <a href="{{route('sewa_mobil.index')}}" class="nav-link">

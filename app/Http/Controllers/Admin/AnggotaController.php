@@ -25,12 +25,17 @@ class AnggotaController extends Controller
         if ($akun->role->jenis_role == "Admin") {
             $judul = "Data Akun";
             $no =1;
-            if($request->has('search')){
+            if($request->search){
                 $user=  User::where('name','like','%'.$request->search.'%')
                 ->orWhere('alamat','like','%'.$request->search.'%')
                 ->paginate(6);
             }else{
                 $user = User::paginate(6);
+            }
+            if($request->sort == 'asc'){
+                $user = User::orderBy('created_at', 'asc')->paginate(6);
+            }elseif ($request->sort == 'desc') {
+                $user = User::orderBy('created_at', 'desc')->paginate(6);
             }
             return view('admin.anggota.index',compact('judul','akun','no','user'));
         } else {
@@ -122,7 +127,7 @@ class AnggotaController extends Controller
         $uid = Auth::user()->id;
         $akun = User::find($uid);
         if ($akun->role->jenis_role == "Admin") {
-            $judul = "Ubah Akun";
+            $judul = "Perbarui Akun";
             $data = Crypt::decrypt($id);
             $user = User::find($data);
 

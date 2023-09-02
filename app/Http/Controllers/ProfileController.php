@@ -65,7 +65,7 @@ class ProfileController extends Controller
     public function edit($id)
     {
         //
-        $judul = 'Akun';
+        $judul = 'Ubah Akun';
         $data = Crypt::decrypt($id);
         $akun = User::find($data);
 

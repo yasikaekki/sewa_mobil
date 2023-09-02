@@ -16,22 +16,27 @@ class KeluhanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        $judul = "Data Keluhan";
         $uid = Auth::user()->id;
         $akun = User::find($uid);
         if ($akun->role->jenis_role == "Admin") {
             $judul = "Data Keluhan";
             $no =1;
-            if($request->has('search')){
+            if($request->search){
                 $lapor=  User::where('name','like','%'.$request->search.'%')
                 ->paginate(6);
             }else{
                 $lapor = Keluhan::paginate(6);
                 $data = count($lapor);
             }
-    
+            if($request->sort == 'asc'){
+                $lapor = Keluhan::orderBy('created_at', 'asc')->paginate(6);
+            }elseif ($request->sort == 'desc') {
+                $lapor = Keluhan::orderBy('created_at', 'desc')->paginate(6);
+            }
             return view('admin.keluhan.index',compact('judul','akun','no','lapor','data'));
         } else {
             return view('errors.404');
@@ -68,6 +73,7 @@ class KeluhanController extends Controller
     public function show($id)
     {
         //
+        $judul = "Data Terlapor";
         $akun = User::find($id);
         if ($akun->role->jenis_role == "Admin") {
             $judul = "Profil Terlapor";

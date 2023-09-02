@@ -25,7 +25,7 @@ class DataSewaController extends Controller
         
         if ($akun->role->jenis_role == "User" || $akun->role->jenis_role == "Seller") {
 
-            if($request->has('search')){
+            if($request->search){
                 $post=  PostCar::where('nama_kendaraan','like','%'.$request->search.'%')
                 ->orWhere('no_kendaraan','like','%'.$request->search.'%')
                 ->paginate(6);
@@ -34,15 +34,27 @@ class DataSewaController extends Controller
                 $pinjam = Terpinjam::paginate(6);
                 $data = count($pinjam);
             }
+
+            if($request->sort == 'asc'){
+                $pinjam = Terpinjam::orderBy('created_at', 'asc')->paginate(6);
+            }elseif ($request->sort == 'desc') {
+                $pinjam = Terpinjam::orderBy('created_at', 'desc')->paginate(6);
+            }
         } else {
 
-            if($request->has('search')){
+            if($request->search){
                 $post=  PostCar::where('nama_kendaraan','like','%'.$request->search.'%')
                 ->orWhere('no_kendaraan','like','%'.$request->search.'%')
                 ->paginate(6);
             }else{
                 $post = PostCar::paginate(6);
                 $data = count($post);
+            }
+
+            if($request->sort == 'asc'){
+                $post = PostCar::orderBy('created_at', 'asc')->paginate(6);
+            }elseif ($request->sort == 'desc') {
+                $post = PostCar::orderBy('created_at', 'desc')->paginate(6);
             }
         }
 
