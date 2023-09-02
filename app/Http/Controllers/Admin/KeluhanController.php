@@ -19,15 +19,23 @@ class KeluhanController extends Controller
     public function index()
     {
         //
-        $judul = "Data Keluhan";
         $uid = Auth::user()->id;
-        $no =1;
         $akun = User::find($uid);
-        $lapor= Keluhan::all();
-        $jumlah = count($lapor);
-        $data = Keluhan::find($jumlah);
-
-        return view('admin.keluhan.index',compact('judul','akun','no','lapor','data'));
+        if ($akun->role->jenis_role == "Admin") {
+            $judul = "Data Keluhan";
+            $no =1;
+            if($request->has('search')){
+                $lapor=  User::where('name','like','%'.$request->search.'%')
+                ->paginate(6);
+            }else{
+                $lapor = Keluhan::paginate(6);
+                $data = count($lapor);
+            }
+    
+            return view('admin.keluhan.index',compact('judul','akun','no','lapor','data'));
+        } else {
+            return view('errors.404');
+        }
     }
 
     /**
@@ -60,12 +68,16 @@ class KeluhanController extends Controller
     public function show($id)
     {
         //
-        $judul = "Profil Terlapor";
         $akun = User::find($id);
-        $data = Crypt::decrypt($id);
-        $lapor = Keluhan::find($data);
+        if ($akun->role->jenis_role == "Admin") {
+            $judul = "Profil Terlapor";
+            $data = Crypt::decrypt($id);
+            $lapor = Keluhan::find($data);
 
-        return view('admin.keluhan.show',compact('judul','akun','lapor'));
+            return view('admin.keluhan.show',compact('judul','akun','lapor'));
+        } else {
+            return view('errors.404');
+        }
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Http\Request;
+use App\Models\Role;
 use App\Models\User;
 use Hash;
 use Auth;
@@ -16,15 +17,26 @@ class AnggotaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $judul = "Data Akun";
         $uid = Auth::user()->id;
-        $no =1;
         $akun = User::find($uid);
-        $user = User::all(); 
-        return view('admin.anggota.index',compact('judul','akun','no','user'));
+        if ($akun->role->jenis_role == "Admin") {
+            $judul = "Data Akun";
+            $no =1;
+            if($request->has('search')){
+                $user=  User::where('name','like','%'.$request->search.'%')
+                ->orWhere('alamat','like','%'.$request->search.'%')
+                ->paginate(6);
+            }else{
+                $user = User::paginate(6);
+            }
+            return view('admin.anggota.index',compact('judul','akun','no','user'));
+        } else {
+            return view('errors.404');
+        }
+        
     }
 
     /**
@@ -35,11 +47,16 @@ class AnggotaController extends Controller
     public function create()
     {
         //
-        $judul = "Tambah Akun";
         $uid = Auth::user()->id;
         $akun = User::find($uid);
+        if ($akun->role->jenis_role == "Admin") {
+            $judul = "Tambah Akun";
 
-        return view('admin.anggota.create',compact('judul','akun'));
+            return view('admin.anggota.create',compact('judul','akun'));
+        } else {
+            return view('errors.404');
+        }
+        
     }
 
     /**
@@ -102,13 +119,18 @@ class AnggotaController extends Controller
     public function edit($id)
     {
         //
-        $judul = "Ubah Akun";
         $uid = Auth::user()->id;
         $akun = User::find($uid);
-        $data = Crypt::decrypt($id);
-        $user = User::find($data);
+        if ($akun->role->jenis_role == "Admin") {
+            $judul = "Ubah Akun";
+            $data = Crypt::decrypt($id);
+            $user = User::find($data);
 
-        return view('admin.anggota.edit',compact('judul','user','akun'));
+            return view('admin.anggota.edit',compact('judul','user','akun'));
+        } else {
+            return view('errors.404');
+        }
+        
     }
 
     /**

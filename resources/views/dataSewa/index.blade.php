@@ -14,8 +14,9 @@
         @endif
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
+            @if ($akun->role->jenis_role == "User" || $akun->role->jenis_role == "Seller")               
             <div class="row d-flex justify-content-center">
-                @empty($data)
+                @if($data == null)
                 <div class="col-lg-7">
                     <div class="card p-5">
                         <div class="card-body p-4">
@@ -60,9 +61,9 @@
                                     <td>{{strftime("%d %B %Y", strtotime($posts->updated_at))}}</td>     
                                     <td>{{strftime("%d %B %Y", strtotime($posts->masa_akhir))}}</td> 
                                     <td>
-                                        <form action="{{route('data_sewa.update',$posts->id)}}" method="post">
+                                        <form action="{{route('data_sewa.destroy',$posts->id)}}" method="post">
                                         @csrf
-                                        @method('PATCH')
+                                        @method('DELETE')
                                         <button type="submit" class="btn btn-success">Kembalikan</button>
                                         </form>
                                     </td>      
@@ -147,7 +148,31 @@
                                 @endforeach
                                 </tbody>
                             </table>
-                            @elseif($akun->role->jenis_role == "Admin")
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                @endif
+            </div>
+            @else
+            <div class="row d-flex justify-content-center">
+               @if($data == null)
+               <div class="col-lg-7">
+                <div class="card p-5">
+                    <div class="card-body p-4">
+                        <div class="text-center text-warning mb-4">
+                            <i class="bi bi-emoji-frown display-1"></i>
+        
+                        </div>
+                        <p class="fs-5 text-center">Mohon maaf<br>Sepertinya belum ada data postingan</p>
+                    </div>
+                    
+                </div>
+            </div>
+               @else
+               <div class="col-lg-12">
+                    <div class="card border-top-info p-4">
+                        <div class="card-body">
                             <table class="table table-bordered">
                                 <thead>
                                 <tr class="table-secondary text-center">
@@ -173,38 +198,39 @@
                                     <td>{{$posts->no_stnk}}</td>      
                                     <td>
                                     <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{$posts->id}}">
-                                        Hapus <i class="bi bi-trash"></i>
-                                    </button>
-                                    </td>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal{{($posts->id)}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <form action="{{route('data_sewa.store')}}" method="post">
-                                            @csrf
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus Postingan</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button class="btn btn-danger" type="submit" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{$posts->id}}">Hapus <i class="bi bi-trash"></i></button>
+                                    <div class="modal fade" id="staticBackdrop{{$posts->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                          <div class="modal-content">
+                                            <div class="p-3">
+                                              <div class="d-flex justify-content-center py-4">
+                                                <i class="bi bi-exclamation-triangle text-warning display-1"></i>
+                                              </div>
+                                              <div class="d-flex justify-content-center">
+                                                <h4 class="text-dark text-center fw-bold px-5">Apakah kamu yakin ingin menghapus postingan {{$posts->nama_kendaraan}} ?</h4>
+                                              </div>
+                                              <div class="d-flex justify-content-evenly p-3">
+                                                <button class="btn btn-primary py-3 px-4" data-bs-dismiss="modal" aria-label="Close">Batal <i class="bi bi-x-square"></i></button>
+                                                <form action="{{route('sewa_mobil.destroy', $posts->id)}}" method="post">
+                                                  @csrf
+                                                  @method('DELETE')
+                                                  <button type="submit" class="btn btn-danger py-3 px-4">Hapus <i class="bi bi-trash"></i></button>
+                                                </form>
+                                              </div>
                                             </div>
-                                            
-                                            <div class="modal-footer">
-                                                <button type="submit" class="btn btn-primary">Hapus <i class="bi bi-trash"></i></button>
-                                            </div>
-                                            </form>
+                                          </div>
                                         </div>
-                                        </div>
-                                    </div>      
+                                    </div>    
                                 </tr>
                                 @endforeach
                                 </tbody>
                             </table>
-                            @endif
                         </div>
                     </div>
-                </div>
-                @endempty
-            </div>
+                </div>    
+               @endif 
+            </div>    
+            @endif
             <!-- /.row -->
         </div><!-- /.container-fluid -->
     </section>

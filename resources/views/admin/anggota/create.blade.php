@@ -113,7 +113,7 @@
                         <input id="password-confirm" type="password" placeholder="Password Confirmation" class="form-control" name="password_confirmation" required autocomplete="new-password">
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-primary form-control mt-2"><i class="fas fa-save"></i> Buat Akun</button>
+                    <button type="submit" class="btn btn-primary form-control mt-2"><i class="fas fa-save"></i> Simpan Akun</button>
                 </form>
               </div>
             </div>

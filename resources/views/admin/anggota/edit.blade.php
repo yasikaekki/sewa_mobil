@@ -87,7 +87,7 @@
                         @enderror
                     </div>
 
-                    <button type="submit" class="btn btn-primary form-control mt-2"><i class="bi bi-pencil-square"></i> Buat Akun</button>
+                    <button type="submit" class="btn btn-primary form-control mt-2"><i class="bi bi-pencil-square"></i> Ubah Akun</button>
                 </form>
               </div>
             </div>

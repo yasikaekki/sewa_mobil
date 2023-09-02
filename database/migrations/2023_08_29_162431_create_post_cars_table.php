@@ -19,7 +19,7 @@ class CreatePostCarsTable extends Migration
             $table->string("foto_profil");
             $table->string("nama_kendaraan");
             $table->integer("harga");
-            $table->integer("no_kendaraan");
+            $table->string("no_kendaraan");
             $table->integer("no_stnk");
             $table->string("status")->nullable();
             $table->string("masa_akhir")->nullable();

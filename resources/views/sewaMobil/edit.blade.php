@@ -62,7 +62,7 @@
                     <div class="form-group mb-3">
                         <div class="row">
                             <label>Nomor Kendaraan</label>
-                            <input type="number" value="{{$post->no_kendaraan}}" class="form-control @error('no_kendaraan') is-invalid @enderror" name="no_kendaraan" placeholder="Nomor Kendaraan">
+                            <input type="text" value="{{$post->no_kendaraan}}" class="form-control @error('no_kendaraan') is-invalid @enderror" name="no_kendaraan" placeholder="Nomor Kendaraan">
                             @error('no_kendaraan')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -82,7 +82,7 @@
                         </div>
                     </div>
                     
-                    <button type="submit" class="btn btn-primary form-control mt-2"><i class="bi bi-pencil-square"></i> Buat Akun</button>
+                    <button type="submit" class="btn btn-primary form-control mt-2"><i class="bi bi-pencil-square"></i> Ubah</button>
                 </form>
               </div>
             </div>

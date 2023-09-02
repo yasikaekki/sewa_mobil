@@ -14,8 +14,8 @@
             </div>
         @endif
         <!-- Small boxes (Stat box) -->
-        @empty ($data)
-        <div class="row">
+        @if ($data == null)
+        <div class="row d-flex justify-content-center">
           <div class="col-lg-7">
             <div class="card p-5">
                 <div class="card-body p-4">
@@ -24,7 +24,7 @@
                     </div>
                     @if ($akun->role->jenis_role == "Seller")
                     <p class="fs-5 text-center">Mohon maaf<br>Sepertinya belum ada kendaraan yang disewakan</p>
-                    <div class="d-grid col-3 mx-auto">
+                    <div class="d-grid col-4 mx-auto">
                       <a class="btn btn-primary" href="{{route('sewa_mobil.create')}}"><i class="bi bi-plus-square-fill"></i> Klik di sini</a>
                     </div>
                     @else
@@ -104,7 +104,7 @@
                   <div class="modal fade" id="exampleModal{{($posts->id)}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content">
-                        <form action="{{route('sewa.submit',$posts->id)}}" method="post">
+                        <form action="{{route('sewa_mobil.update',$posts->id)}}" method="post">
                           @csrf
                           @method('PATCH')
                           <div class="modal-header">
@@ -136,7 +136,7 @@
           </div>
           @endforeach
         </div>
-        @endempty
+        @endif
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </section>

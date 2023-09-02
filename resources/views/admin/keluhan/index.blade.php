@@ -10,7 +10,7 @@
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
             <div class="row d-flex justify-content-center">
-            @empty($data)
+            @if($data == null)
             <div class="col-lg-7">
                 <div class="card p-5">
                     <div class="card-body p-4">
@@ -60,7 +60,7 @@
                     </div>
                 </div>
             </div>
-            @endempty
+            @endif
             </div>
             <!-- /.row -->
         </div><!-- /.container-fluid -->

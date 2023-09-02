@@ -22,10 +22,29 @@ class DataSewaController extends Controller
         $uid = Auth::user()->id;
         $no = 1;
         $akun = User::find($uid);
-        $post = PostCar::all();
-        $pinjam = Terpinjam::all();
-        $jumlah = count($post);
-        $data= Terpinjam::find($jumlah);
+        
+        if ($akun->role->jenis_role == "User" || $akun->role->jenis_role == "Seller") {
+
+            if($request->has('search')){
+                $post=  PostCar::where('nama_kendaraan','like','%'.$request->search.'%')
+                ->orWhere('no_kendaraan','like','%'.$request->search.'%')
+                ->paginate(6);
+            }else{
+                $post = PostCar::paginate(6);
+                $pinjam = Terpinjam::paginate(6);
+                $data = count($pinjam);
+            }
+        } else {
+
+            if($request->has('search')){
+                $post=  PostCar::where('nama_kendaraan','like','%'.$request->search.'%')
+                ->orWhere('no_kendaraan','like','%'.$request->search.'%')
+                ->paginate(6);
+            }else{
+                $post = PostCar::paginate(6);
+                $data = count($post);
+            }
+        }
 
         return view('dataSewa.index', compact('judul', 'akun', 'post', 'no', 'data'));
     }
@@ -91,12 +110,6 @@ class DataSewaController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $post = PostCar::find($id);
-        $post->status = null;
-        $post->masa_akhir = null;
-        $post->save();
-
-        return redirect()->route('data_sewa.index')->with('sukses', $post->nama_kendaraan.'berhasil dikembalikan');
     }
 
     /**
@@ -105,8 +118,16 @@ class DataSewaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request ,$id)
     {
         //
+        $post = Terpinjam::findOrFail($id);
+        $post->delete();
+        $kembali = PostCar::find($id);
+        $kembali->status= null;
+        $kembali->masa_akhir = null;
+        $kembali->save();
+
+        return redirect()->route('data_sewa.index')->with('sukses', $post->nama_kendaraan.'berhasil dikembalikan');
     }
 }
